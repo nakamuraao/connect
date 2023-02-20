@@ -1,0 +1,8 @@
+{
+    "webhook1":"CHANNEL1_WEBHOOK_URL",
+    "channel1":"CHANNEL1_ID",
+    "webhook2":"CHANNEL2_WEBHOOK_URL",
+    "channel2":"CHANNEL2_ID",
+    "cid":"BOT_ID",
+    "token":"YOUR_BOT_TOKEN"
+}
