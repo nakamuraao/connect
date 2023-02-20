@@ -18,7 +18,7 @@ client.on(Events.MessageCreate, msg => {
             if(msg.content){
                 webhook.send({
                     content: msg.content,
-                    username: msg.author.username + msg.author.discriminator,
+                    username: msg.author.username + '#' + msg.author.discriminator,
                     avatarURL: msg.author.avatarURL()
                 })
             };
@@ -32,19 +32,18 @@ client.on(Events.MessageCreate, msg => {
         }else{
             webhook.send({
                 content: msg.content,
-                username: msg.author.username + msg.author.discriminator,
+                username: msg.author.username+ '#' + msg.author.discriminator,
                 avatarURL: msg.author.avatarURL()
             })
         };
     }else if(msg.channelId === channel2){
         const channel = client.channels.cache.get(channel1);
         const webhook = new WebhookClient({ url: webhook1 });
-        
         if(msg.attachments.size > 0){
             if(msg.content){
                 webhook.send({
                     content: msg.content,
-                    username: msg.author.username + msg.author.discriminator,
+                    username: msg.author.username + '#' + msg.author.discriminator,
                     avatarURL: msg.author.avatarURL()
                 })
             };
@@ -54,7 +53,14 @@ client.on(Events.MessageCreate, msg => {
                 const buff = Buffer.from(response.data, "base64");
                 const file = new AttachmentBuilder(buff, { name: a.name });
                 channel.send({ files: [file] });
-              })};
+              });
+        }else{
+            webhook.send({
+                content: msg.content,
+                username: msg.author.username + '#' + msg.author.discriminator,
+                avatarURL: msg.author.avatarURL()
+            })
+        };  
     }else return;
     //console.log(msg);
 })
